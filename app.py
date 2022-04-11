@@ -16,15 +16,15 @@ import os
 # load_dotenv()
 
 
-# sentry_sdk.init(
-# 	dsn=os.getenv('SENTRY_DSN'),
-#     integrations=[FlaskIntegration()],
+sentry_sdk.init(
+	dsn=os.getenv('https://e1dc8d22210d40a7a90b2dfd7155ac9c@o1196630.ingest.sentry.io/6321460'),
+    integrations=[FlaskIntegration()],
 
-#     # Set traces_sample_rate to 1.0 to capture 100%
-#     # of transactions for performance monitoring.
-#     # We recommend adjusting this value in production.
-#     traces_sample_rate=1.0
-# )
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0
+)
 
 
 # value of __name__ should be  '__main__'

@@ -12,19 +12,19 @@ import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
 from time import sleep
 import os
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 
-sentry_sdk.init(
-	dsn=os.getenv('SENTRY_DSN'),
-    integrations=[FlaskIntegration()],
+# sentry_sdk.init(
+# 	dsn=os.getenv('SENTRY_DSN'),
+#     integrations=[FlaskIntegration()],
 
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1.0
-)
+#     # Set traces_sample_rate to 1.0 to capture 100%
+#     # of transactions for performance monitoring.
+#     # We recommend adjusting this value in production.
+#     traces_sample_rate=1.0
+# )
 
 
 # value of __name__ should be  '__main__'
@@ -146,4 +146,4 @@ if __name__ == '__main__':
 	# model = joblib.load('./model/model.pkl')
 	# Running the app in debug mode allows to change the code and
 	# see the changes without the need to restart the server
-	app.run(debug=True)
+	app.run(host='0.0.0.0', port=8000)

@@ -3,11 +3,29 @@ import json
 # import pandas as pd
 import numpy as np
 from flask import Flask, request, jsonify, render_template, flash#, redirect, url_for, session, logging
-from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
-from sklearn.externals import joblib
+from wtforms import Form, StringField, TextAreaField, validators, StringField, SubmitField
+import joblib
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
+from time import sleep
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+
+sentry_sdk.init(
+	dsn=os.getenv('SENTRY_DSN'),
+    integrations=[FlaskIntegration()],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0
+)
+
 
 # value of __name__ should be  '__main__'
 app = Flask(__name__)
@@ -18,6 +36,7 @@ model = joblib.load('./model/model.pkl')
 @app.route('/')
 def index():
 	# Index page
+	sleep(1)
 	return render_template('index.html')
 
 @app.route('/about')
